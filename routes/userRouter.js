@@ -7,5 +7,7 @@ userRouter.post('/login',userController.login)
 userRouter.get('/logout',userController.logout)
 userRouter.get('/infor',auth,userController.getUser)
 userRouter.get('/refreshToken',userController.refreshToken)
+userRouter.patch('/addcart',auth,userController.addCart)
+
 
 module.exports =userRouter
