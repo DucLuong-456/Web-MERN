@@ -1,7 +1,7 @@
 import {  PayPalButtons } from "@paypal/react-paypal-js";
 import React from "react";
 //const PayPalButton = paypal.Buttons.driver("react", { React, ReactDOM });
-function paymentButton(){
+function paymentButton({total}){
     const createOrder = (data) => {
 
         // Order is created on the server and the order id is returned
@@ -29,7 +29,7 @@ function paymentButton(){
                 sku: "YOUR_PRODUCT_STOCK_KEEPING_UNIT",
     
                 quantity: "10",
-    
+                total: total,
               },
     
             ],
@@ -60,8 +60,8 @@ function paymentButton(){
     
           body: JSON.stringify({
     
-            orderID: data.orderID
-    
+            orderID: data.orderID,
+            value: total
           })
     
         })

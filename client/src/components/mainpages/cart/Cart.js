@@ -55,6 +55,20 @@ function Cart() {
         addToCart()
     }
 
+    const tranSuccess = async ()=>{
+        let payment ={
+            paymentID: "paymentID",
+            address: "Thử nghiệm"
+        }
+         console.log(payment)
+         const {paymentID, address} = payment
+         await axios.post('/api/payment',{cart,paymentID, address},{headers: {Authorization: token}})
+        setCart([])
+        addToCart([])
+        alert("You are successfully an order")
+
+    }
+
     return (
         
         <div>
@@ -96,7 +110,8 @@ function Cart() {
             }
             <div className="total">
                 <h3>Total: $ {total}</h3>
-                <PayPalButtons style={{color: 'blue'}} className='paymentButton'/>
+                <button className="payment-button" total={total} onClick={()=>{tranSuccess()}} style={{background: 'orange', width: 100,height: 50}}>Thanh Toán</button>
+                <PayPalButtons style={{color: 'blue'}} total={total} tranSuccess={tranSuccess} className='paymentButton'/>
             </div>
         </div>
     )

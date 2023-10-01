@@ -7,6 +7,7 @@ class APIfeatures{
         this.query = query;
         this.queryString = queryString
     }
+    // filter product
     filtering(){
         const queryObj= {...this.queryString}// = req.query
         const excludedFields  =['page','sort','limit'];
@@ -49,7 +50,7 @@ const productController = {
 
             const products = await features.query;
 
-            if(!products) res.status(400).json({msg: "Do not products!"})
+            if(!products) return res.status(400).json({msg: "Do not products!"})
 
             res.json({
                 status: "success",
@@ -93,7 +94,7 @@ const productController = {
     updateProduct: async(req,res)=>{
         try {
             const {title, price,description,content,images,category} = req.body;
-            if(!images) res.status(400).json({msg: "No image upload!"})
+            if(!images) return res.status(400).json({msg: "No image upload!"})
 
             await Product.findByIdAndUpdate({_id: req.params.id},{
                 title: title.toLowerCase(), price,description,content,images,category
