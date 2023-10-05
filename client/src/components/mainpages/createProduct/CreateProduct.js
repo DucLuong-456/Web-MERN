@@ -104,10 +104,17 @@ function CreateProduct() {
             if(!isAdmin) return alert("You're not an admin")
             if(!images) return alert("No Image Upload")
 
-            
-            await axios.post('/api/products', {...product, images}, {
-                headers: {Authorization: token}
-            })
+            if(onEdit){
+                await axios.put(`/api/products/${product._id}`, {...product, images}, {
+                    headers: {Authorization: token}
+                })
+            }
+            else{
+                await axios.post('/api/products', {...product, images}, {
+                    headers: {Authorization: token}
+                })
+
+            }
             
             setImages(false)
             setProduct(initialState)
@@ -135,7 +142,7 @@ function CreateProduct() {
                 <div className="row">
                     <label htmlFor="product_id">Product ID</label>
                     <input type="text" name="product_id" id="product_id" required
-                    value={product.product_id} onChange={handleChangeInput}/>
+                    value={product.product_id} onChange={handleChangeInput} disabled={product.id}/>
                 </div>
 
                 <div className="row">
