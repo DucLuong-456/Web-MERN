@@ -24,6 +24,8 @@ function Pages() {
             <Route path='/login' exact element={ isLogged? <NotFound/>: <Login />} />
             <Route path='/category' exact element={isAdmin?<Category/>: <NotFound/>} />
             <Route path='/create_product' exact element={isAdmin?<CreateProduct/>: <NotFound/>} />
+            <Route path='/edit_product/:id' exact element={isAdmin?<CreateProduct/>: <NotFound/>} />
+
             
             <Route path='/register' exact element={isLogged? <NotFound/>:<Register />} />
             <Route path='/history' exact element={isLogged? <OrderHistory/>:<NotFound />} />

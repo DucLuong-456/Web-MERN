@@ -1,7 +1,7 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { GlobalState } from '../../../GlobalState'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate,useParams } from 'react-router-dom'
 import Loading from '../utils/loading/Loading'
 const initialState ={
     product_id: '',
@@ -22,8 +22,32 @@ function CreateProduct() {
 
     const [token] = state.token
     const [callback,setCallBack] = state.productsAPI.callback
+    const [onEdit, setOnEdit] = useState(false)
+    const [products] = state.productsAPI.products
+    const param = useParams()
+    useEffect(()=>{
+        if(param.id){
+                setOnEdit(true)
+                products.forEach(product => {
+                    if(param.id === product._id){
+                        setProduct(product)
+                        setImages(product.images)
+                    }
+                    
+                })
+        }else
+        {
+            setOnEdit(false)
+            setProduct(initialState)
+            setImages(false)
+        }
+    },[param.id,products])
+
+
     //console.log({admin: isAdmin})
     let history =useNavigate()
+
+
     const handleDestroy = async () => {
         try {
             if(!isAdmin) return alert("You're not an admin")
@@ -151,7 +175,7 @@ function CreateProduct() {
                     </select>
                 </div>
 
-                <button type="submit">Create</button>
+                <button type="submit">{onEdit?'Update':'Create'}</button>
                 </div>
            </form>
             </div>
