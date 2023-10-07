@@ -3,6 +3,8 @@ import { GlobalState } from '../../../GlobalState';
 import ProductItem from '../utils/ProductItem/ProductItem';
 import Loading from '../utils/loading/Loading';
 import axios from 'axios'
+import Filters from './Filters';
+import LoadMore from './LoadMore';
 function Products() {
     const state = useContext(GlobalState)
     const [products,setProducts] =  state.productsAPI.products;
@@ -54,6 +56,7 @@ function Products() {
 
     return (
         <>
+        <Filters/>
         {
             isAdmin && 
             <div className="delete-all">
@@ -69,6 +72,7 @@ function Products() {
                 })
             }
         </div>
+        <LoadMore/>
         </>
     )
 }

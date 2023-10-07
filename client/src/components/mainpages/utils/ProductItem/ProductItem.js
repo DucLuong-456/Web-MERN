@@ -19,6 +19,6 @@ function ProductItem({product,isAdmin,deleteProduct,handleCheck}) {
             <BtnRender product={product} deleteProduct={deleteProduct}/>
         </div>
     )
-}
+    }
 
 export default ProductItem
