@@ -18,7 +18,7 @@ function DetailProduct() {
         
     },[params.id,products])
     //console.log(detailProduct)
-    if(detailProduct.length == 0) return null
+    if(detailProduct.length === 0) return null
     return (
         <>
             <div className='detail'>

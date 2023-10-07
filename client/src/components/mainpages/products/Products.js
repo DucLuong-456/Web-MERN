@@ -53,7 +53,7 @@ function Products() {
             if(product.checked) deleteProduct(product._id, product.images.public_id)
         })
     }
-
+    if(loading) return <div><Loading /></div>
     return (
         <>
         <Filters/>

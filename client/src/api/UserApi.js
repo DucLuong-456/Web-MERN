@@ -23,7 +23,7 @@ function UserAPI(token){
                 }
             }
             getUser()
-            console.log(isLogged)
+            //console.log(isLogged)
         }
     },[token])
 

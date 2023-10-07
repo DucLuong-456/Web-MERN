@@ -1,9 +1,6 @@
 import React,{useContext, useEffect, useState} from 'react';
 import { GlobalState } from '../../../GlobalState';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
-import {  PayPalButtons } from "@paypal/react-paypal-js";
-import paymentButton from "./paymentButton"
 function Cart() {
     const state = useContext(GlobalState)
     const [cart,setCart]= state.userAPI.cart;
@@ -111,7 +108,6 @@ function Cart() {
             <div className="total">
                 <h3>Total: $ {total}</h3>
                 <button className="payment-button" total={total} onClick={()=>{tranSuccess()}} style={{background: 'orange', width: 100,height: 50}}>Thanh Toán</button>
-                <PayPalButtons style={{color: 'blue'}} total={total} tranSuccess={tranSuccess} className='paymentButton'/>
             </div>
         </div>
     )
